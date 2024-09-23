@@ -9,8 +9,6 @@ import kotlin.Exception
 import kotlin.random.Random
 
 class SocketManager {
-    private val chatSession = ChatSession()
-
     fun run() {
         val registrationSocketServer = ServerSocket(1111)
         println("Server launched!")
@@ -44,6 +42,7 @@ class SocketManager {
     private fun createServerSocket() : Int {
         val portNumber = findRandomAvailablePort()
         val serverSocket = ServerSocket(portNumber)
+        val chatSession = ChatSession()
 
         CoroutineScope(Dispatchers.Default).launch {
             chatSession.registerSocketClients(serverSocket)

@@ -37,7 +37,6 @@ class ChatSession {
     }
 
     private fun handleIncomingMessages(socket: Socket) {
-        println("I am handling incoming messages")
         var inputStreamReader : InputStreamReader? = null
         var bufferedReader : BufferedReader? = null
 
@@ -47,12 +46,9 @@ class ChatSession {
             var messageJson: String
 
             while (true) {
-                println("i am before reading")
                 messageJson = bufferedReader.readLine()
-                println("message received")
 
                 val message : MessageDTO = Json.decodeFromString(messageJson)
-                println("Message received in socket")
 
                 if (message.message == "DISCONNECT") {
                     break
